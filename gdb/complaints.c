@@ -183,6 +183,8 @@ vcomplaint (struct complaints **c, const char *file, int line, const char *fmt,
   else
     series = complaints->series;
 
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+#pragma GCC diagnostic push
   if (complaint->file != NULL)
     internal_vwarning (complaint->file, complaint->line, complaint->fmt, args);
   else if (deprecated_warning_hook)
@@ -220,6 +222,7 @@ vcomplaint (struct complaints **c, const char *file, int line, const char *fmt,
 	}
     }
 
+#pragma GCC diagnostic pop
   switch (series)
     {
     case ISOLATED_MESSAGE:

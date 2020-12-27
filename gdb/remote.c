@@ -5062,8 +5062,8 @@ remote_parse_stop_reply (char *buf, struct stop_reply *event)
 	  /* If this packet is an awatch packet, don't parse the 'a'
 	     as a register number.  */
 
-	  if (strncmp (p, "awatch", strlen("awatch")) != 0
-	      && strncmp (p, "core", strlen ("core") != 0))
+	  if ((strncmp (p, "awatch", strlen("awatch")) != 0)
+	      && (strncmp (p, "core", strlen ("core")) != 0))
 	    {
 	      /* Read the ``P'' register number.  */
 	      pnum = strtol (p, &p_temp, 16);
@@ -6560,8 +6560,11 @@ remote_send_printf (const char *format, ...)
   va_start (ap, format);
 
   rs->buf[0] = '\0';
+#pragma GCC diagnostic ignored "-Wformat-nonliteral"
+#pragma GCC diagnostic push
   if (vsnprintf (rs->buf, max_size, format, ap) >= max_size)
     internal_error (__FILE__, __LINE__, "Too long remote packet.");
+#pragma GCC diagnostic pop
 
   if (putpkt (rs->buf) < 0)
     error (_("Communication problem with target."));

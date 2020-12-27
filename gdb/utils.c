@@ -645,22 +645,6 @@ report_command_stats (void *arg)
 			 cmd_time / 1000000, cmd_time % 1000000);
     }
 
-  if (display_space)
-    {
-#ifdef HAVE_SBRK
-      char *lim = (char *) sbrk (0);
-
-      long space_now = lim - lim_at_start;
-      long space_diff = space_now - start_stats->start_space;
-
-      printf_unfiltered (msg_type == 0
-			 ? _("Space used: %ld (%c%ld during startup)\n")
-			 : _("Space used: %ld (%c%ld for this command)\n"),
-			 space_now,
-			 (space_diff >= 0 ? '+' : '-'),
-			 space_diff);
-#endif
-    }
 }
 
 /* Create a cleanup that reports time and space used since its
@@ -671,11 +655,6 @@ struct cleanup *
 make_command_stats_cleanup (int msg_type)
 {
   struct cmd_stats *new_stat = XMALLOC (struct cmd_stats);
-  
-#ifdef HAVE_SBRK
-  char *lim = (char *) sbrk (0);
-  new_stat->start_space = lim - lim_at_start;
-#endif
 
   new_stat->msg_type = msg_type;
   new_stat->start_time = get_run_time ();

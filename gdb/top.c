@@ -179,10 +179,6 @@ int remote_timeout = 2;
 
 int remote_debug = 0;
 
-/* Sbrk location on entry to main.  Used for statistics only.  */
-#ifdef HAVE_SBRK
-char *lim_at_start;
-#endif
 
 /* Hooks for alternate command interfaces.  */
 

@@ -33,7 +33,7 @@
 #define bfd_mach_o_mkobject bfd_mach_o_gen_mkobject
 
 #define FILE_ALIGN(off, algn) \
-  (((off) + ((file_ptr) 1 << (algn)) - 1) & ((file_ptr) -1 << (algn)))
+  (((off) + ((file_ptr) 1 << (algn)) - 1) & ((file_ptr) -1u << (algn)))
 
 static int bfd_mach_o_read_symtab_symbols (bfd *);
 

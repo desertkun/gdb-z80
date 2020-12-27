@@ -304,10 +304,6 @@ captured_main (void *data)
   bindtextdomain (PACKAGE, LOCALEDIR);
   textdomain (PACKAGE);
 
-#ifdef HAVE_SBRK
-  lim_at_start = (char *) sbrk (0);
-#endif
-
   cmdsize = 1;
   cmdarg = (struct cmdarg *) xmalloc (cmdsize * sizeof (*cmdarg));
   ncmd = 0;
