@@ -12,7 +12,7 @@ It is now possible to automatically configure and build a variety of
 tools with one command.  To build all of the tools contained herein,
 run the ``configure'' script here, e.g.:
 
-	./configure 
+	./configure --target=z80
 	make
 
 To install them (by default in /usr/local/bin, /usr/local/lib, etc),
@@ -29,13 +29,13 @@ If you have more than one compiler on your system, it is often best to
 explicitly set CC in the environment before running configure, and to
 also set CC when running make.  For example (assuming sh/bash/ksh):
 
-	CC=gcc ./configure
+	CC=gcc ./configure --target=z80
 	make
 
 A similar example using csh:
 
 	setenv CC gcc
-	./configure
+	./configure --target=z80
 	make
 
 Much of the code and documentation enclosed is copyright by
